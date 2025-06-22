@@ -29,7 +29,6 @@
     "pg": "^8.11.5",
     "pg-hstore": "^2.3.4",
     "sequelize": "^6.37.3",
-    "supertest": "^7.0.0",
     "tsx": "^4.7.1",
     "twitter-api-v2": "^1.23.2",
     "uuid": "^9.0.1"
@@ -47,8 +46,11 @@
     "@types/mime-types": "^2.1.4",
     "@types/passport-google-oauth20": "^2.0.16",
     "@types/passport-http": "^0.3.11",
-    "@types/supertest": "^6.0.2",
+    "@types/supertest": "^6.0.3",
     "@types/uuid": "^9.0.8",
+    "jest": "^30.0.2",
+    "supertest": "^7.1.1",
+    "ts-jest": "^29.4.0",
     "typescript": "^5.8.3"
   }
 }
