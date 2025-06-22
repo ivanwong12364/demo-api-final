@@ -63,14 +63,14 @@ const getAll = (ctx, next) => __awaiter(void 0, void 0, void 0, function* () {
     const result = yield model.getAll(20, 1, order, direction); // Fix limit and page if needed
     if (result.length) {
         const body = result.map((hotel) => {
-            const { id = 0, title = "", alltext = "", summary = "", imageurl = "", agencyid = 0, description = "" } = hotel;
+            const { id = 0, title = "", alltext = "", summary = "", imageurl = "", agencyid = 0, description = "", location = "", price = 0 } = hotel;
             const links = {
                 likes: `http://${ctx.host}/api/v1/hotels/${hotel.id}/likes`,
                 fav: `http://${ctx.host}/api/v1/hotels/${hotel.id}/fav`,
                 msg: `http://${ctx.host}/api/v1/hotels/${hotel.id}/msg`,
                 self: `http://${ctx.host}/api/v1/hotels/${hotel.id}`,
             };
-            return { id, title, alltext, summary, imageurl, agencyid, description, links };
+            return { id, title, alltext, summary, imageurl, agencyid, description, location, price, links };
         });
         ctx.body = body;
         yield next();

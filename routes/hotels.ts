@@ -15,6 +15,8 @@ interface Hotel {
   imageurl: string;
   agencyid: number;
   description: string;
+  location:string;
+  price:number;
   links: {
     likes: string;
     fav: string;
@@ -32,15 +34,15 @@ const getAll = async (ctx: RouterContext, next: any) => {
   const result = await model.getAll(20, 1, order, direction); // Fix limit and page if needed
   if (result.length) {
     const body: Hotel[] = result.map((hotel: any) => {
-      const { id = 0, title = "", alltext = "", summary = "", imageurl = "", agencyid = 0, description = "" }: Partial<Hotel> = hotel;
+      const { id = 0, title = "", alltext = "", summary = "", imageurl = "", agencyid = 0, description = "" ,location="",price=0}: Partial<Hotel> = hotel;
       const links = {
         likes: `http://${ctx.host}/api/v1/hotels/${hotel.id}/likes`,
         fav: `http://${ctx.host}/api/v1/hotels/${hotel.id}/fav`,
         msg: `http://${ctx.host}/api/v1/hotels/${hotel.id}/msg`,
         self: `http://${ctx.host}/api/v1/hotels/${hotel.id}`,
       };
-      return { id, title, alltext, summary, imageurl, agencyid, description, links };
-    });
+      return { id, title, alltext, summary, imageurl, agencyid, description, location, price, links };
+    } );
     ctx.body = body;
     await next();
   }

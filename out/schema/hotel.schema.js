@@ -1,4 +1,6 @@
 "use strict";
+// 請確保您修改的是這個檔案：../schema/hotel.schema.ts
+// 而不是 ../schema/hotel.schema.js
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.hotel = void 0;
 exports.hotel = {
@@ -31,6 +33,15 @@ exports.hotel = {
         "agencyid": {
             "description": "User ID of the hotel agency",
             "type": "integer",
+            "minimum": 0
+        },
+        "location": {
+            "description": "City or geographical location of the hotel", // 建議修正描述
+            "type": "string" // <--- 確保這裡已改為 "string"
+        },
+        "price": {
+            "description": "Price of the hotel", // 建議修正描述
+            "type": "number", // <--- 確保這裡已改為 "number"
             "minimum": 0
         },
         "description": {
