@@ -15,8 +15,8 @@ servers:
 tags:
   - name: Users
     description: API endpoints for user management.
-  - name: Articles
-    description: Access and perform CRUD operations on blog entries.
+  - name: Hotels
+    description: Access and perform CRUD operations on hotel entries.
   - name: Login
     description: login user account
       
@@ -127,109 +127,62 @@ paths:
         '400':
           description: Bad request
   
-  /users/login:
-    post:
-      tags:
-       - Login
-      description: Login user account
-      requestBody:
-        description: login with username and password
-        required: true
-        content:
-          application/json:
-            schema:
-             type: object
-             properties:
-              username:
-                type: string
-                description: The user name.
-              password:
-                type: string
-                description: The user password.
-      responses:
-        '200':
-          description: user record.
-          content:
-            application/json:
-             schema:
-               type: object
-               properties:   
-                 id:
-                   type: integer
-                   description: The id of user. 
-                 username:
-                   type: string
-                   description: The user name.
-                 email:
-                   type: string
-                   description: The user email.
-                 avataurl:
-                   type: string
-                   description: The user avatar url.
-                 role:
-                   type: string
-                   description: The user role.  
-                 links:
-                   type: uri
-                   description: The  link to user info by id.
 
-        '404':
-          description: User was not found in the DB.
         
-  /articles/{id}:
+  /hotel/{id}:
     parameters:
       - in: path
         name: id
         schema:
           type: integer
         required: true
-        description: Numeric id of the article
+        description: Numeric id of the hotel
     get:
       tags:
-        - Articles
+        - Hotels
       description:
-        Get article by id.
+        Get hotel by id.
       responses:
         '200':
-          description: View of an article record.
+          description: View of hotel record.
         '404':
-          description: Article was not found in the DB.
+          description: hotel was not found in the DB.
     put:
       tags:
-        - Articles
+        - Hotels
       description:
-        Update article by ID.
+        Update hotel by ID.
       requestBody:
-        description: A new article data
+        description: A new hotel data
         required: true
         content:
           application/json:
             schema:
-              $ref: ./article.json#/definitions/article     
+              $ref: ./hotel.json#/definitions/hotel     
       responses:
         '200':
-          description: View of an article record.
+          description: View of an hotel record.
         '404':
-          description: Article was not found in the DB.
+          description: hotel  was not found in the DB.
     delete:
       tags:
-        - Articles
+        - hotels
       description:
-        Delete article by ID.
+        Delete hotel  by ID.
       responses:
         '200':
-          description: View of an article record.
+          description: View of an hotel  record.
         '404':
-          description: Article was not found in the DB.
+          description: hotel  was not found in the DB.
 
-  /articles/: 
+  /hotel/: 
     get:
       tags:
-      - Articles
-      description: Get all articles
+      - hotel
+      description: Get all hotel
       responses:
         '200':
-          description: articles record.
+          description: hotel record.
           content:
             application/json:
              schema:
@@ -237,37 +190,40 @@ paths:
                properties:   
                  id:
                    type: integer
-                   description: The id of article. 
+                   description: The id of hotel. 
                  title:
                    type: string
-                   description: The title of article.
+                   description: The title of hotel.
                  imageurl:
                    type: string
-                   description: The link to image of article.
+                   description: The link to image of hotel.
                  summary:
                    type: string
-                   description: summary of articles
-                 authorid:
+                   description: summary of hotels
+                 agencyid:
                    type: integer 
-                   description: The id of author.  
+                   description: The id of  agency.  
                  links:
                    type: uri array object
-                   description: include four links to likes,fav,msg and self with articleid respectively eg.articleid=1 [{"likes":"https://xxx:3000/api/v1/articles/1/likes"},{"fav":"https://xxx:3000/api/v1/articles/1/fav"},{"msg":"https://xxx:3000/api/v1/articles/1/msg"},{"self":"https:xxx:3000/api/v1/articles/1"}]
+                   description: include four links to likes,fav,msg and self with articleid respectively eg.articleid=1 [{"likes":"https://xxx:3000/api/v1/hotel/1/likes"},{"fav":"https://xxx:3000/api/v1//hotel/1/fav"},{"msg":"https://xxx:3000/api/v1//hotel/1/msg"},{"self":"https:xxx:3000/api/v1//hotel/1"}]
           '404':
             description: Not Found  
     post:
       tags:
-       - Articles
-      description: Create a new article
+       - hotel
+      description: Create a new hotel
       requestBody:
-        description: A new article data
+        description: A new hotel data
         required: true
         content:
           application/json:
             schema:
-              $ref: ./article.json#/definitions/article
+              $ref: ./hotel.json#/definitions/hotel
       responses:
         '201':
           description: Articles created
         '400':
           description: Bad request
+
+
+          
